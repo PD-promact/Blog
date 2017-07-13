@@ -4,11 +4,14 @@
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <style>
-             
-/* Set padding to keep content from hitting the edges */
+              /* Set padding to keep content from hitting the edges */
+ .glyphicon {
+    font-size: 20px;
+}
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -291,8 +294,8 @@ textarea {
     .postContainer .postTitle {
         text-align: center;
     }
-    
-     .postContainer .postBody {
+
+    .postContainer .postBody {
         width: 90%;
         margin: 10px auto;
         position: relative;
@@ -301,7 +304,7 @@ textarea {
         word-wrap: break-word;
     }
 
-    .postContainer .postBody pre, .commentBody pre {
+        .postContainer .postBody pre, .commentBody pre {
             padding: 10px;
             border-radius: 10px;
             background-color: #750000;
@@ -355,7 +358,7 @@ textarea {
             color: #ffffff;
             margin-bottom: 10px;
         }
-
+        
 .bottomContainer {
     width: 95%;
     margin: 0 auto;
@@ -363,34 +366,6 @@ textarea {
     padding: 10px;
     overflow: hidden;
 }
-
-.replySubMenu {
-    margin-bottom: 10px;
-    overflow: hidden;
-    width: 100%;
-    height: 25px;
-    padding: 5px;
-}
-
-    .replySubMenu a {
-        text-decoration: none;
-        font-style: italic;
-        color: #7575fb;
-        line-height: 25px;
-        margin: 0 5px;
-        float: left;
-    }
-
-    .replySubMenu img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .replySubMenu .shareParent {
-        overflow: hidden;
-        display: inline-block;
-        position: relative;
-    }
 
 .postMenu {
     overflow: hidden;
@@ -456,77 +431,85 @@ textarea {
         }
             </style>    
     </head>
+            
         <body>
              <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="#">BLOGGING</a>
-              </div>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="<?php echo base_url()?>register_controller/login"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
-                <li><a href="<?php echo base_url()?>register_controller/index"><span class="glyphicon glyphicon-log-in"></span>REGISTER</a></li>
-              </ul>
-            </div>
-           </nav>
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="#">BLOGGING</a>
+                  </div>
+                     <div class="nav navbar-nav pull-right">                        
+                         <ul class="nav navbar-nav">
+                              <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
+                          <ul class="dropdown-menu">
+                            <li><a href="<?php base_url()?>admin">ADMIN</a></li>
+                            <li><a href="<?php base_url()?>logout">LOGOUT</a></li>                          
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>                          
+                  </div>                   
+               </nav>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <form class="navbar-form navbar-right" role="search">
+            <form class="navbar-form navbar" role="search">
                 <span class="glyphicon glyphicon-search"></span>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search Post">
               </div>
             </nav>
             <div class="pull-left">
-             <?php if($fetch_data!='')
+                  <?php if($fetch_data!='')
                 {
                     foreach($fetch_data as $row)
                     {
                         ?>
-                 <div class="blogContainer" id="blog">
+                 <div class="blogContainer">
                 <div class="mainblogview">
                  <div ng-app="PostModule" ng-controller="PostCtrl" style="overflow:hidden;width:100%;">
                    <div ng-repeat="posts in postsData" class="postDescContainer">
                        <div class="postDescTitle"><h3><b><?php echo $row->post_title ?></b></h3></div>
-                         <br>
+                       <br>
                        <div class="postPubDate">
-                            <label>Posted On :</label> <?php echo $row->date?>
+                            <label>Posted On :</label><?php echo $row->date ?>
                         </div>
-                       <div class="postDescCategory">
-                           Posted By <b><?php echo $row->user_name ?></b> in <b><?php echo $row->category_name ?></b>
+                        <div class="postBy">
+                            Posted By <b><?php echo $row->user_name ?></b> in <b><?php echo $row->category_name ?></b>
                         </div>
-                         <br><br>
+                           <br>
                        <div class="postDescBody">
                             <?php echo substr($row->post_content,0,550) ?>
+                          
                     </div>
+                        </div>
                     </div>
-                </div>
-                </div>
-                </div>
-                       <?php } ?>
+             </div>
+                 </div>
+                  <?php } ?>
             <?php }?>
-                <p><?php echo $links ?>Hii There are links</p>
-                    </div>
+            </div>
                   <div class="pull-right">
                   <ul class="list-group">
-                      <li class="list-group-item">
-                          <h2>Categories</h2></li>                          
+                        <li class="list-group-item">
+                             <h2>Categories</h2></li>                            
                         <?php if(count($getCat)): ?>
-                        <?php foreach($getCat as $categories): ?>                   
-                        <li class="list-group-item"><?php echo $categories->category_name ?></li>
+                        <?php foreach($getCat as $categories): ?>          
+                  <li class="list-group-item"><?php echo $categories->category_name ?></li>
                             <?php endforeach;?>
                     <?php else :?>
-                        <?php endif; ?>
+                        <?php endif; ?></li>
                      </ul>
                  <ul class="list-group">
-                     <li class="list-group-item">
-                         <h2>Tags</h2></li>
+                   <li class="list-group-item">
+                       <h2>Tags</h2></li>
                    <?php if(count($getTag)): ?>
-                        <?php foreach($getTag as $tags): ?>
+                       <?php foreach($getTag as $tags): ?>
                    <li class="list-group-item"><?php echo $tags->tag_name ?></li>
                         <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>
                  </ul>
                </div>
-            
         </body>
 </html>

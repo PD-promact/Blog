@@ -7,16 +7,16 @@ Class Register_model extends CI_Model
         $this->db->insert("users",$data);
     }
     
-     public function fetch_single_data($emp_id)
+     public function fetch_single_data($user_id)
     {
-        $this->db->where("user_id",$emp_id);
+        $this->db->where("user_id",$user_id);
         $query = $this->db->get("users");
         return $query;
     }
     
-    public function update_data($data,$emp_id)
+    public function update_data($data,$user_id)
     {
-        $this->db->where("emp_id",$emp_id);
+        $this->db->where("user_id",$user_id);
         $this->db->update("users",$data);
     }
     

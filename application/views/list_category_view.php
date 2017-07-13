@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -11,7 +11,7 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">BLOGGING</a>
         </div>
-         <div class="nav navbar-nav pull-right">                        
+             <div class="nav navbar-nav pull-right">                        
             <ul class="nav navbar-nav">
            <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
@@ -21,7 +21,7 @@
              </ul>
            </li>
          </ul>
-       </div>       
+       </div>      
       </div>
      </nav>
 <style>
@@ -84,7 +84,7 @@ body {
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="<?php echo base_url()?>cat_tag_controller/index">Manage Categories</a>
   <a href="<?php echo base_url()?>cat_tag_controller/tag">Manage Tags</a>
-  <a href="<?php echo base_url()?>create_blog_controller/blog_list_view">">Manage Posts</a>
+  <a href="<?php echo base_url()?>post_controller/post">Manage Posts</a>
 </div>
 
 <div id="main">
@@ -103,7 +103,61 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
     document.body.style.backgroundColor = "white";
 }
+</script>      
+  <div class="form-group">
+           <a href="<?php echo site_url('cat_tag_controller/form_cat'); ?>" class="btn btn-info" >Add</a>
+                </div>
+<h1 align="center"><b>Manage Categories</b></h1>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Category Name</th>
+                    <th>Operations</th>
+                </tr>
+                <?php
+            
+                if($fetch_cat->num_rows()> 0)
+                {
+                    foreach($fetch_cat->result() as $row)
+                    {
+                        ?>
+                <tr>
+                    <td><?php echo $row->category_id; ?></td>
+                    <td><?php echo $row->category_name; ?></td>
+                    <td><a href="#" class="delete_data" id="<?php echo $row->category_id; ?>">Delete</a>|
+                    <a href="<?php echo base_url(); ?>cat_tag_controller/update_cat/<?php echo $row->category_id; ?>">Edit</a></td>
+                </tr>
+                        <?php
+                    }
+                }
+                else
+                {
+                    ?>
+                <tr>
+                    <td colspan="2">No Data Found</td>
+                </tr>
+                    <?php
+                }
+                ?>
+            </table>
+        </div>
+    </body>
+    <script>
+    $(document).ready(function(){
+        $('.delete_data').click(function(){
+            var category_id=$(this).attr("id");
+            if(confirm("Are you sure wanna delete this?"))
+            {
+                window.location="<?php echo base_url(); ?>cat_tag_controller/delete_cat/"+category_id;
+            }
+            else
+            {
+                return false;
+            }
+        });
+    });
 </script>
-     
+    
 </body>
 </html> 

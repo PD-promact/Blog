@@ -5,25 +5,25 @@ Class Register_controller extends CI_Controller
       
         public function index()
         {
-            $this->load->model('create_blog_model');
-        $data["getCat"]= $this->create_blog_model->getCat();
-        $data["getTag"]= $this->create_blog_model->getTag();
-        $this->load->view('front_view',$data);
+            $this->load->model('register_model');
+            $this->load->view('register_view');
         }
 
         public function form_validation()
         {
             $this->load->library('form_validation');
+            $this->form_validation->set_rules('user_name',"User Name",'required|alpha');
             $this->form_validation->set_rules("email","Email",'required|valid_email|is_unique[users.email]');
             $this->form_validation->set_rules("password","Password",'required|min_length[8]');
             $this->form_validation->set_rules('passconf',"Password Confirmation",'required|matches[password]');
-
+           
             if($this->form_validation->run())
             {
                 $this->load->model('register_model');
                 $data=array(
+                    'user_name'=> $this->input->post('user_name'),
                     'email'=> $this->input->post('email'),
-                    'password'=> $this->input->post('password'),
+                    'password'=> $this->input->post('password'), 
                 );
                 if($this->session->userdata('role')=='admin')
                 {
@@ -116,16 +116,8 @@ Class Register_controller extends CI_Controller
                                 $session_data['password']= $user->password;
                                 $session_data['role']= $user->role;
                                 $this->session->set_userdata($session_data);
-                   
+                                redirect(base_url().'after_login_controller/index');
                     }
-                     if($this->session->userdata('role') == 'admin')
-                      {   
-                          redirect(base_url().'admin_controller');
-                      }
-                      elseif($this->session->userdata('role') == 'user')
-                      {
-                          redirect(base_url().'employee_controller');
-                      }
                 }
                    else
                 {

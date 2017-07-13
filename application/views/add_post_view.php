@@ -7,11 +7,14 @@
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <style>
-        .glyphicon.glyphicon-user {
-            font-size: 25px;
-        }   
+        .glyphicon {
+    font-size: 20px;
+}
     </style>
     <body>
        <nav class="navbar navbar-inverse">
@@ -19,17 +22,25 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">BLOGGING</a>
           </div>
-             <div class="nav navbar-nav navbar-right">
-                 <input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="<?php echo base_url()?>"><span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span></a>
-                  </div>
+              <div class="nav navbar-nav pull-right">                        
+                <ul class="nav navbar-nav">
+                     <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                   <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
+                 <ul class="dropdown-menu">
+                   <li><a href="#">ADMIN</a></li>
+                   <li><a href="#">LOGOUT</a></li>                          
+                 </ul>
+               </li>
+             </ul>
+           </div>       
         </div>
        </nav>
         <div class="container">
             <br/>
-            <form method="post" action="<?php echo base_url();?>create_blog_controller/blog_form_validation">
+            <form method="post" action="<?php echo base_url();?>post_controller/post_form_validation">
                  <?php
-                if($this->uri->segment(2)=="inserted")
+                if($this->uri->segment(2)=="inserted_post")
                 {
                     echo '<p class="text-success">Your Post Is Uploaded Successfully!!</p>';
                 }
@@ -62,7 +73,7 @@
                     <br>
                 <div>
                     <label>Tags</label><br>
-                    <select class="form-control" id="tag" multiple="multiple" name="tag">
+                    <select class="form-control" id="tag" multiple class="form-control" name="tag[]">
                         <option value="">Select Tags</option>
                    <?php if(count($getTag)): ?>
                         <?php foreach($getTag as $tags): ?>
@@ -74,11 +85,11 @@
                       <span class="text-danger"><?php echo form_error("tag"); ?></span>
                </div>
                 <div class="form-group">
-                    <input type="submit" name="insert" value="SUBMIT" class="btn btn-primary center-block btn-sx">
+                    <input type="submit" name="insert_post" value="SUBMIT" class="btn btn-primary center-block btn-sx">
                     <?php echo $this->session->flashdata("error");?>
                 </div>
                 </fieldset>
-            </form>
+             </form>
         </div>
     </body>
      <script type="text/javascript">

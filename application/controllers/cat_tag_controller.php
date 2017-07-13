@@ -6,14 +6,14 @@ Class Cat_tag_controller extends CI_Controller
     {
         $this->load->model('cat_tag_model');
         $data["fetch_cat"]= $this->cat_tag_model->fetch_cat();
-        $this->load->view('category_view',$data);
+        $this->load->view('list_category_view',$data);
     }
     
     public function tag()
     {
         $this->load->model('cat_tag_model');
         $data["fetch_tag"]= $this->cat_tag_model->fetch_tag();
-        $this->load->view('tag_view',$data);
+        $this->load->view('list_tag_view',$data);
     }
     
     public function form_cat()
