@@ -13,11 +13,11 @@
         </div>
              <div class="nav navbar-nav pull-right">                        
             <ul class="nav navbar-nav">
+                 <li><a href="<?php echo base_url()?>after_login_controller/index">HOME</a></li>
            <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
              <ul class="dropdown-menu">
-               <li><a href="#">ADMIN</a></li>
-               <li><a href="#">LOGOUT</a></li>                          
+               <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
              </ul>
            </li>
          </ul>

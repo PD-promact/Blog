@@ -438,7 +438,8 @@ textarea {
                   <div class="navbar-header">
                     <a class="navbar-brand" href="#">BLOGGING</a>
                   </div>
-                     <div class="nav navbar-nav pull-right">                        
+                     <div class="nav navbar-nav pull-right">
+                          <?php  if($this->session->userdata('role')=='admin'){ ?>
                          <ul class="nav navbar-nav">
                               <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -449,6 +450,18 @@ textarea {
                           </ul>
                         </li>
                       </ul>
+                        <?php } ?>
+                          <?php  if($this->session->userdata('role')=='user'){ ?>
+                         <ul class="nav navbar-nav">
+                              <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
+                          <ul class="dropdown-menu">
+                            <li><a href="<?php base_url()?>logout">LOGOUT</a></li>                          
+                          </ul>
+                        </li>
+                      </ul>
+                        <?php } ?>
                     </div>                          
                   </div>                   
                </nav>
@@ -479,8 +492,7 @@ textarea {
                         </div>
                            <br>
                        <div class="postDescBody">
-                            <?php echo substr($row->post_content,0,550) ?>
-                          
+                            <?php echo substr($row->post_content,0,550) ?>                          
                     </div>
                         </div>
                     </div>
@@ -488,6 +500,7 @@ textarea {
                  </div>
                   <?php } ?>
             <?php }?>
+                 <p><?php echo $links ?>Hii There are links</p>
             </div>
                   <div class="pull-right">
                   <ul class="list-group">

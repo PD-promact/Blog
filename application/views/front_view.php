@@ -454,6 +454,22 @@ textarea {
             width: 100%;
             display: block;
         }
+        input[type=text] {
+            width: 160px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-position: 10px 10px; 
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        input[type=text]:focus {
+            width: 100%;
+        }
             </style>    
     </head>
         <body>
@@ -467,14 +483,13 @@ textarea {
                 <li><a href="<?php echo base_url()?>register_controller/index"><span class="glyphicon glyphicon-log-in"></span>REGISTER</a></li>
               </ul>
             </div>
-           </nav>
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <form class="navbar-form navbar-right" role="search">
-                <span class="glyphicon glyphicon-search"></span>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search Post">
-              </div>
-            </nav>
+           </nav>          
+            <form class="form-inline" role="form" method="post" action="<?php base_url()?>front_controller/search_post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="search" id="email" placeholder="Search Post">
+            </div>
+            <button type="submit" class="btn btn-info" name="submit">Search</button>
+            </form>
             <div class="pull-left">
              <?php if($fetch_data!='')
                 {
@@ -503,7 +518,7 @@ textarea {
                 </div>
                        <?php } ?>
             <?php }?>
-                <p><?php echo $links ?>Hii There are links</p>
+                <?php echo $links ?>
                     </div>
                   <div class="pull-right">
                   <ul class="list-group">
@@ -527,6 +542,5 @@ textarea {
                         <?php endif; ?>
                  </ul>
                </div>
-            
         </body>
 </html>
