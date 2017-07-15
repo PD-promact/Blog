@@ -8,14 +8,14 @@ Class Front_controller extends CI_Controller
         $this->load->library("pagination");
         $data["getCat"]= $this->front_model->getCat();
         $data["getTag"]= $this->front_model->getTag();
-        $limit=5;
-        $start=0;
+//        $limit=5;
+//        $start=0;
         
         $config=array();
         $config["base_url"] = base_url()."front_controller/index";
         $config["total_rows"] = $this->front_model->record_count();
         $config["per_page"] = 5;
-        $config["num_links"] = 1;
+        $config["num_links"] = 2;
         
         $config["use_page_numbers"] = TRUE;
         $config["full_tag_open"] = '<ul class="pagination">';
@@ -38,7 +38,14 @@ Class Front_controller extends CI_Controller
         
         $this->pagination->initialize($config);
         
-        $page = $this->uri->segment(3);
+        if($this->uri->segment(3)){
+            $page = ($this->uri->segment(3)) ;
+            }
+            else{
+            $page = 0;
+        }
+        $start=($page-1)*$config["per_page"];
+        
         $data["fetch_data"] = $this->front_model->fetch_data($config["per_page"],$page);
         $data["links"] = $this->pagination->create_links();
 
@@ -56,9 +63,23 @@ Class Front_controller extends CI_Controller
         {
             $data["fetch_data"] = $this->front_model->search_post($post_title,$category_name,$tag_name);
             $data["links"] = '';
+            $data["getCat"]= $this->front_model->getCat();
+            $data["getTag"]= $this->front_model->getTag();
             $this->load->view('front_view',$data);
         }else{
             redirect($this->index());
         }
     }
+    
+//    public function cat_tag($category_id,$tag_id)
+//    {
+//        $this->load->model('post_model');
+//        if(isset(GET['category_id']))
+//        {
+//            
+//        }
+//        $data['fetch_data'] = $this->post_model->cat_tag($category_id);
+//        $this->load->view('your_post_view',$data);
+//    }
+         
 }

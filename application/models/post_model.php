@@ -47,4 +47,17 @@ Class Post_model extends CI_Model
         $this->db->where("post_id",$post_id);
         $this->db->delete("posts");
     }
+    
+    public function get_my_profile($user_id = NULL)
+    {
+        $user_id = $this->session->userdata('user_id');
+
+        $this->db->select('*');
+        $this->db->from('posts');
+        $this->db->join('users','users.user_id = posts.user_id');
+        $this->db->where('users.user_id',$user_id);
+        $query = $this->db->get();
+
+        return $query;
+    }
 }

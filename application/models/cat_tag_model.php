@@ -7,7 +7,7 @@ Class Cat_tag_model extends CI_Model
         $this->db->insert("categories",$data);
     }
     
-     public function fetch_single_category($category_id)
+     public function fetch_single_cat($category_id)
     {
         $this->db->where("category_id",$category_id);
         $query = $this->db->get("categories");

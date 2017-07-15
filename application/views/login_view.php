@@ -11,7 +11,7 @@
             <a class="navbar-brand" href="#">BLOGGING</a>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url()?>"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
+            <li><a href="<?php echo base_url()?>register_controller/login"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
             <li><a href="<?php echo base_url()?>register_controller/index"><span class="glyphicon glyphicon-log-in"></span>REGISTER</a></li>
           </ul>
         </div>

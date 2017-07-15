@@ -14,7 +14,7 @@
         </div>
         <div class="nav navbar-nav pull-right">
             <ul class="nav navbar-nav">
-                 <li><a href="<?php echo base_url()?>post_controller/post">HOME</a></li>
+                 <li><a href="<?php echo base_url()?>after_login_controller/get_profile">HOME</a></li>
            <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
              <ul class="dropdown-menu">
@@ -80,41 +80,16 @@ body {
 }
 </style>
 </head>
-<body>
-
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="<?php echo base_url()?>cat_tag_controller/index">Manage Categories</a>
-  <a href="<?php echo base_url()?>cat_tag_controller/tag">Manage Tags</a>
-  <a href="<?php echo base_url()?>post_controller/post">Manage Posts</a>
-</div>
-
-<div id="main">
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Managing Options</span>
-</div>
-
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-}
-</script>    
-        <div class="container">
-        <form method="post" action="<?php echo base_url()?>post_controller/post_form_validation">
-            <?php
+<body>  
+     <div class="containter">
+    <form method="post" action="<?php echo base_url()?>post_controller/post_form_validation">
+        <?php
                  if(isset($user_data))
                 {
                     foreach($user_data->result() as $row)
                     {
                         ?>
-                <h1 align="center"><b>Edit Post</b></h1><br/>
+                <h1 align="center"><b>Edit Your Post</b></h1><br/>
                   <fieldset class="well the-fieldset">
                                  <div class="form-group">
                                     <label>Post Title</label>
@@ -155,7 +130,7 @@ function closeNav() {
                                        </div>                      
                                       <div class="form-group">
                                 <input type="hidden" name="hidden_id" value="<?php echo $row->post_id; ?>">
-                                <input type="submit" name="update_post" value="SAVE" class="btn btn-info center-block btn-sx"/><br><br>
+                                <input type="submit" name="update_your_post" value="SAVE" class="btn btn-info center-block btn-sx"/><br><br>
                               <input type="reset" name="reset" value="CANCEL" class="btn btn-info center-block btn-sx"/>
                         </div>
                         </fieldset>
@@ -163,8 +138,8 @@ function closeNav() {
                     }
                 }
                 ?>
-        </form>
-                </div>
+    </form>
+     </div>
 </body>
  <script type="text/javascript">
          $(document).ready(function(){

@@ -50,6 +50,12 @@ Class Post_controller extends CI_Controller
 //                         echo "<script>alert('Your details are updated successfully');history.go(-1);</script>";
                      redirect(base_url()."post_controller/updated_post");
                 }
+                if($this->input->post("update_your_post"))
+                {
+                    $this->post_model->update_post($data,$this->input->post("hidden_id"));
+//                         echo "<script>alert('Your details are updated successfully');history.go(-1);</script>";
+                     redirect(base_url()."post_controller/updated_your_post");
+                }
                 if($this->input->post("insert_post"))
                 {
                     $this->post_model->insert_post($data);
@@ -67,20 +73,39 @@ Class Post_controller extends CI_Controller
             $this->index();
         }
         
-          public function update_post()
+        public function update_post()
         {
          $post_id= $this->uri->segment(3);   
          $this->load->model('post_model');
          $data["user_data"]=$this->post_model->fetch_single_post($post_id);
          $data["fetch_post"]= $this->post_model->fetch_post();
          $data["getCat"]= $this->post_model->getCat();
-        $data["getTag"]= $this->post_model->getTag();
+         $data["getTag"]= $this->post_model->getTag();
          $this->load->view("edit_post_view",$data);
         }
 
         public function updated_post()
         { 
             if($this->uri->segment(2)=="updated_post")
+            {
+                echo "<script>alert('Post Is Updated');history.go(-1);</script>";
+            }
+        }
+        
+          public function update_your_post()
+        {
+         $post_id= $this->uri->segment(3);   
+         $this->load->model('post_model');
+         $data["user_data"]=$this->post_model->fetch_single_post($post_id);
+         $data["fetch_post"]= $this->post_model->fetch_post();
+         $data["getCat"]= $this->post_model->getCat();
+         $data["getTag"]= $this->post_model->getTag();
+         $this->load->view("edit_your_post_view",$data);
+        }
+
+        public function updated_your_post()
+        { 
+            if($this->uri->segment(2)=="updated_your_post")
             {
                 echo "<script>alert('Post Is Updated');history.go(-1);</script>";
             }

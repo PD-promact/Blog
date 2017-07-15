@@ -5,6 +5,11 @@
        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            .glyphicon {
+                font-size: 20px;
+                }
+        </style>
     </head>
         <body>
              <nav class="navbar navbar-inverse">
@@ -13,7 +18,7 @@
                 <a class="navbar-brand" href="#">BLOGGING</a>
               </div>
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="<?php echo base_url()?>"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
+                  <li><a href="<?php echo base_url()?>register_controller/login"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
                 <li><a href="<?php echo base_url()?>register_controller/index"><span class="glyphicon glyphicon-log-in"></span>REGISTER</a></li>
               </ul>
             </div>

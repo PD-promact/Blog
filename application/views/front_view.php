@@ -4,8 +4,8 @@
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
       <style>
              
 /* Set padding to keep content from hitting the edges */
@@ -13,7 +13,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.glyphicon {
+    font-size: 15px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -479,12 +481,35 @@ textarea {
                 <a class="navbar-brand" href="#">BLOGGING</a>
               </div>
               <ul class="nav navbar-nav navbar-right">
+                   <?php  if($this->session->userdata('role')==''){ ?>
                   <li><a href="<?php echo base_url()?>register_controller/login"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
                 <li><a href="<?php echo base_url()?>register_controller/index"><span class="glyphicon glyphicon-log-in"></span>REGISTER</a></li>
+                   <?php } ?>
+                  <?php  if($this->session->userdata('role')=='admin'){ ?>
+                 <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
+                          <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url()?>after_login_controller/admin">ADMIN</a></li>
+                             <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
+                            <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
+                          </ul>
+                        </li>
+                   <?php } ?>
+                 <?php  if($this->session->userdata('role')=='user'){ ?>
+                 <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
+                          <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
+                            <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
+                          </ul>
+                        </li>
+                   <?php } ?>        
               </ul>
             </div>
            </nav>          
-            <form class="form-inline" role="form" method="post" action="<?php base_url()?>front_controller/search_post">
+            <form class="form-inline" role="form" method="post" action="<?php echo base_url()?>front_controller/search_post">
             <div class="form-group">
                 <input type="text" class="form-control" name="search" id="email" placeholder="Search Post">
             </div>
@@ -518,7 +543,7 @@ textarea {
                 </div>
                        <?php } ?>
             <?php }?>
-                <?php echo $links ?>
+                  <?php echo $links ?>   
                     </div>
                   <div class="pull-right">
                   <ul class="list-group">
@@ -526,7 +551,7 @@ textarea {
                           <h2>Categories</h2></li>                          
                         <?php if(count($getCat)): ?>
                         <?php foreach($getCat as $categories): ?>                   
-                        <li class="list-group-item"><?php echo $categories->category_name ?></li>
+                      <a href="#" class="find_category" id="<?php echo $categories->category_id?>"><li class="list-group-item"><?php echo $categories->category_name ?></li></a>
                             <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>
@@ -536,7 +561,7 @@ textarea {
                          <h2>Tags</h2></li>
                    <?php if(count($getTag)): ?>
                         <?php foreach($getTag as $tags): ?>
-                   <li class="list-group-item"><?php echo $tags->tag_name ?></li>
+                     <a href="#" class="find_category" id="<?php $tags->tag_id?>"><li class="list-group-item"><?php echo $tags->tag_name ?></li></a>
                         <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>

@@ -18,7 +18,7 @@
            <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
              <ul class="dropdown-menu">
-                <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
+               <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
                <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
              </ul>
            </li>
@@ -26,87 +26,7 @@
        </div>       
       </div>
      </nav>
-<style>
-.glyphicon {
-    font-size: 20px;
-}
-body {
-    font-family: "Lato", sans-serif;
-    transition: background-color .5s;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-#main {
-    transition: margin-left .5s;
-    padding: 16px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-</head>
-<body>
-
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="<?php echo base_url()?>cat_tag_controller/index">Manage Categories</a>
-  <a href="<?php echo base_url()?>cat_tag_controller/tag">Manage Tags</a>
-  <a href="<?php echo base_url()?>post_controller/post">Manage Posts</a>
-</div>
-
-<div id="main">
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-</div>
-
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-}
-</script>      
-<h1 align="center"><b>Manage Posts</b></h1>
+<h1 align="center"><b>Your Posts</b></h1>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tr>
@@ -116,16 +36,16 @@ function closeNav() {
                 </tr>
                 <?php
             
-                if($fetch_post->num_rows()> 0)
+                if($my_data->num_rows()> 0)
                 {
-                    foreach($fetch_post->result() as $row)
+                    foreach($my_data->result() as $row)
                     {
                         ?>
                 <tr>
                     <td><?php echo $row->post_id; ?></td>
                     <td><?php echo $row->post_title; ?></td>
                     <td><a href="#" class="delete_post" id="<?php echo $row->post_id; ?>">Delete</a>|
-                    <a href="<?php echo base_url(); ?>post_controller/update_post/<?php echo $row->post_id; ?>">Edit</a></td>
+                    <a href="<?php echo base_url(); ?>post_controller/update_your_post/<?php echo $row->post_id; ?>">Edit</a></td>
                 </tr>
                         <?php
                     }
@@ -148,7 +68,7 @@ function closeNav() {
             var post_id=$(this).attr("id");
             if(confirm("Are you sure wanna delete this?"))
             {
-                window.location="<?php echo base_url(); ?>post_controller/delete_post/"+post_id;
+                window.location="<?php echo base_url(); ?>after_login_controller/delete_post/"+post_id;
             }
             else
             {
@@ -160,4 +80,3 @@ function closeNav() {
     
 </body>
 </html> 
-

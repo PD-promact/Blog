@@ -22,7 +22,7 @@ Class After_login_controller extends CI_Controller
         $start=0;
         $data["fetch_data"]= $this->after_login_model->fetch_data($limit,$start);
         $data['email'] = $this->session->userdata('email');
-        $this->load->view('after_login_view',$data);
+        $this->load->view('front_view',$data);
     } 
     
     public function pagination()
@@ -41,8 +41,28 @@ Class After_login_controller extends CI_Controller
 
         $this->load->view("front_view", $data);
     }
-    
-     public function admin()
+    public function get_profile($user_id='')
+    {
+        $this->load->model('post_model');
+        $user_id = $this->session->userdata('user_id');
+        $data['my_data'] = $this->post_model->get_my_profile($user_id);
+        $this->load->view('your_post_view',$data);
+    }
+         
+    public function delete_post()
+    {
+        $post_id= $this->uri->segment(3);
+        $this->load->model('post_model');
+        $this->post_model->delete_post($post_id);
+        redirect(base_url()."after_login_controller/deleted_post");
+    }
+
+    public function deleted_post()
+    {
+        $this->get_profile();
+    }
+        
+    public function admin()
     {
          $this->load->view('admin_view');
     }
@@ -51,7 +71,7 @@ Class After_login_controller extends CI_Controller
     {
         $this->session->unset_userdata('email');
         session_destroy();
-        redirect('register_controller/login');
+        redirect(base_url()."front_controller/index");
     }
     
 }

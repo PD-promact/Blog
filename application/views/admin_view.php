@@ -17,6 +17,7 @@
            <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
              <ul class="dropdown-menu">
+                <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
                <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
              </ul>
            </li>
@@ -90,7 +91,7 @@ body {
 <div id="main">
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Managing Options</span>
 </div>
-
+    <h1>This is the Admin Section</h1>
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
