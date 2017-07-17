@@ -121,14 +121,14 @@ Class Register_controller extends CI_Controller
                 }
                    else
                 {
-                    $this->session->set_flashdata('error',"<div style='color:red;'>You Must Register First.</div>");
+                    $this->session->set_flashdata('error',"<div style='color:red;'>Invalid login name and password.</div>");
                     redirect(base_url().'register_controller/login');
                 } 
               
             }
                  else
                 {
-                    $this->session->set_flashdata('error',"<div style='color:red;'>Invalid login name and password.</div>");
+                    $this->session->set_flashdata('error',"<div style='color:red;'>You Must Register First.</div>");
                     redirect(base_url().'register_controller/login');
                 } 
         }

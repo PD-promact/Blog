@@ -143,7 +143,7 @@
                     <span class="text-danger"><?php echo form_error("tag"); ?></span>
                 </div>           
                   <div class="form-group">
-                      <input type="submit" name="insert_tag" value="SAVE" class="btn btn-primary center-block btn-sx"/>
+                      <input type="submit" name="insert_tag" value="SAVE" class="btn btn-primary center-block btn-sx"/>&nbsp;
                       <input type="reset" name="reset" value="CANCEL" class="btn btn-primary center-block btn-sx"/>
                 </div>
                

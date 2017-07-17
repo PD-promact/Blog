@@ -509,12 +509,7 @@ textarea {
               </ul>
             </div>
            </nav>          
-            <form class="form-inline" role="form" method="post" action="<?php echo base_url()?>front_controller/search_post">
-            <div class="form-group">
-                <input type="text" class="form-control" name="search" id="search" placeholder="Search Post">
-            </div>
-                <button type="submit" class="btn btn-info" name="submit">Search&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
-            </form>
+           
             <div class="pull-left">
              <?php if($fetch_data!='')
                 {
@@ -535,16 +530,15 @@ textarea {
                         </div>
                          <br><br>
                        <div class="postDescBody">
-                            <?php echo substr($row->post_content,0,550) ?>
+                            <?php echo $row->post_content ?>
                     </div>
                     </div>
-                       <a href="<?php echo base_url();?>front_controller/read_more/<?php echo $row->post_id?>" class="btn btn-primary active" role="button">Read More</a>
                 </div>
                 </div>
                 </div>
                        <?php } ?>
             <?php }?>
-                  <?php echo $links ?>   
+               
                     </div>
                   <div class="pull-right">
                   <ul class="list-group">
