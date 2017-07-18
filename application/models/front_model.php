@@ -27,14 +27,12 @@ public function getCat()
                         posts.post_content,
                         posts.date,
                         users.user_name,
-                        categories.category_name,
-                        tags.tag_name
+                        categories.category_name,                        
                 ');
         $this->db->from('posts');
         $this->db->join('users','users.user_id=posts.user_id');
         $this->db->join('categories','categories.category_id=posts.category_id');
-        $this->db->join('tags','tags.tag_id=posts.tag_id');
-        
+                
         $query = $this->db->get();
               
         if($query->num_rows()>0)
@@ -59,6 +57,7 @@ public function getCat()
            $this->db->join('categories','categories.category_id=posts.category_id');
            $this->db->join('tags','tags.tag_id=posts.tag_id');
            $query = $this->db->get();
+           
            return $totalPosts = $query->num_rows();
     }
     
@@ -88,7 +87,7 @@ public function getCat()
            }
     }
         
-     public function fetch_by_id($category_id,$tag_id)
+     public function fetch_cat($category_id)
     {
        
         $this->db->select('         
@@ -98,16 +97,35 @@ public function getCat()
                         posts.date,
                         users.user_name,
                         categories.category_name,
-                        tags.tag_name
                 ');
         $this->db->from('posts');
         $this->db->join('users','users.user_id=posts.user_id');
-        $this->db->join('categories','categories.category_id=posts.category_id');
-        $this->db->join('tags','tags.tag_id=posts.tag_id');
+        $this->db->join('categories','categories.category_id=posts.category_id','right');
         $this->db->where("categories.category_id",$category_id);
-        $this->db->where("tags.tag_id",$tag_id);
      
         $query = $this->db->get();
+              
+        if($query->num_rows()>0)
+        {
+            return $query->result();
+        }    
+    }
+    
+     public function fetch_tag($tag_id)
+    {             
+        $query = $this->db->query("SELECT p.post_id,
+						 p.post_title,
+						 p.post_content,
+						 p.date,
+						 group_concat(DISTINCT u.user_name ORDER BY p.post_id) AS user_name,
+						 group_concat(DISTINCT c.category_name ORDER BY p.post_id) AS category_name,
+			 			 group_concat(DISTINCT t.tag_name ORDER BY p.post_id) AS tag_name		
+						FROM posts p
+                                                INNER JOIN users u ON u.user_id=p.user_id
+						INNER JOIN categories c ON c.category_id=p.category_id
+						INNER JOIN tags t ON t.tag_id=p.tag_id
+                                                WHERE FIND_IN_SET($tag_id,p.tag_id)
+						GROUP BY p.post_id");
               
         if($query->num_rows()>0)
         {

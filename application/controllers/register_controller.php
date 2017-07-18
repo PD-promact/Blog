@@ -116,7 +116,7 @@ Class Register_controller extends CI_Controller
                                 $session_data['password']= $user->password;
                                 $session_data['role']= $user->role;
                                 $this->session->set_userdata($session_data);
-                                redirect(base_url().'after_login_controller/index');
+                                redirect(base_url().'front_controller/logged_in');
                     }
                 }
                    else

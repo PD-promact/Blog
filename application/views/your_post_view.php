@@ -6,6 +6,11 @@
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            .navbar {
+    border-radius: 0px;
+}
+        </style>
 </head>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -14,12 +19,12 @@
         </div>
          <div class="nav navbar-nav pull-right">                        
             <ul class="nav navbar-nav">
-                 <li><a href="<?php echo base_url()?>after_login_controller/index">HOME</a></li>
+                 <li><a href="<?php echo base_url()?>front_controller/index">HOME</a></li>
            <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
              <ul class="dropdown-menu">
-               <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
-               <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
+               <li><a href="<?php echo base_url()?>front_controller/get_profile">YOUR POSTS</a></li>
+               <li><a href="<?php echo base_url()?>front_controller/logout">LOGOUT</a></li>                          
              </ul>
            </li>
          </ul>

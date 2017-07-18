@@ -12,19 +12,23 @@
                 </div>
                 <div class="nav navbar-nav pull-right">                        
                     <ul class="nav navbar-nav">
-                         <li><a href="<?php echo base_url()?>after_login_controller/index">HOME</a></li>
+                         <li><a href="<?php echo base_url()?>front_controller/index">HOME</a></li>
                    <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                        <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
                      <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
-                       <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
+                        <li><a href="<?php echo base_url()?>front_controller/get_profile">YOUR POSTS</a></li>
+                       <li><a href="<?php echo base_url()?>front_controller/logout">LOGOUT</a></li>                          
                      </ul>
                    </li>
                  </ul>
                </div>       
               </div>
              </nav>
-        <style>
+        <style>           
+            .navbar {
+            border-radius: 0px;
+        }
+       
         .glyphicon {
             font-size: 20px;
         }    
@@ -142,8 +146,7 @@
                     <span class="text-danger"><?php echo form_error("category"); ?></span>
                 </div>    
                   <div class="form-group">
-                      <input type="submit" name="insert_cat" value="SAVE" class="btn btn-primary center-block btn-sx"/>
-                      <br><br><br>
+                      <input type="submit" name="insert_cat" value="SAVE" class="btn btn-primary center-block btn-sx"/>&nbsp;                     
                       <input type="reset" name="reset" value="CANCEL" class="btn btn-primary center-block btn-sx"/>
                 </div>
                 <?php } ?>

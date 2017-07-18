@@ -13,6 +13,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.navbar {
+    border-radius: 0px;
+}
 .glyphicon {
     font-size: 15px;
 }
@@ -161,16 +164,6 @@ textarea {
             margin-bottom: 5px;
         }
 
-.postLikes {
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-.postDislikes {
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
 .mainblogview .paging {
     position: absolute;
     bottom: 0;
@@ -222,54 +215,7 @@ textarea {
         width: 200px;
     }
 
-.submitBtnLink {
-    border: none;
-    cursor: pointer;
-    color: blue;
-    font-weight: bold;
-    background: none;
-    font-size: 16px;
-}
-
-.postsSearch {
-    width: 100%;
-    margin: 50px 0 10px 0;
-    overflow: hidden;
-}
-
-    .postsSearch .allPostsForm {
-        float: right;
-    }
-
-.postsFilter {
-    float: left;
-    max-width: 700px;
-}
-
-    .postsFilter table th {
-        text-align: left;
-        display: table-cell;
-        vertical-align: text-top;
-    }
-
-    .postsFilter .postsFltInp {
-        width: 100px;
-        float: left;
-    }
-
-    .postsFilter .postFiltBtn {
-        font-size: 18px;
-        border: 1.5px groove;
-        border-top: none;
-        border-left: none;
-        border-radius: 5px;
-        float: right;
-        background-color: rgba(255, 255, 255, 0.58);
-        margin-top: 10px;
-    }
-
 /*#endregion Allposts*/
-
 
 /*#region Post*/
 .postContainer {
@@ -311,36 +257,6 @@ textarea {
             margin-bottom: 10px;
         }
 
-    .postContainer .postVote {
-        float: left;
-        margin-left: -10px;
-        overflow: hidden;
-        background: linear-gradient(lightgreen,#ff6d6d);
-        border-radius: 0 10px 10px 0;
-        min-width: 50px;
-    }
-
-        .postContainer .postVote table {
-            margin: 0 auto;
-        }
-
-    .postContainer .postShare {
-        float: right;
-        margin-right: -10px;
-        border-radius: 10px 0 0 10px;
-        background: linear-gradient(#bdbdff,#a4a4fc);
-        width: 40px;
-    }
-
-        .postContainer .postShare table {
-            margin: 0 auto;
-        }
-
-    .postContainer .postVideo {
-        width: 560px;
-        margin: 0 auto;
-    }
-
     .postContainer .postBody {
         width: 90%;
         margin: 10px auto;
@@ -356,105 +272,6 @@ textarea {
             background-color: #750000;
             color: #ffffff;
             margin-bottom: 10px;
-        }
-
-.bottomContainer {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 10px;
-    overflow: hidden;
-}
-
-.replySubMenu {
-    margin-bottom: 10px;
-    overflow: hidden;
-    width: 100%;
-    height: 25px;
-    padding: 5px;
-}
-
-    .replySubMenu a {
-        text-decoration: none;
-        font-style: italic;
-        color: #7575fb;
-        line-height: 25px;
-        margin: 0 5px;
-        float: left;
-    }
-
-    .replySubMenu img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .replySubMenu .shareParent {
-        overflow: hidden;
-        display: inline-block;
-        position: relative;
-    }
-
-.postMenu {
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-    .postMenu .postMenuSub {
-        width: 55px;
-        float: right;
-    }
-
-.commentMenu {
-    width: 60px;
-    float: right;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-/*#endregion Post*/
-
-/*#region EditPost*/
-.editPostContainer {
-    background-color: rgba(255, 255, 255, 0.70);
-    border-radius: 10px;
-    width: 95%;
-    margin: 0 auto;
-    padding: 10px;
-    overflow: hidden;
-}
-
-    .editPostContainer .editPostId {
-        width: 100%;
-        overflow: hidden;
-        float: left;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-
-        .editPostContainer .editPostId .editPostIdLbl {
-            float: left;
-            margin-right: 10px;
-        }
-
-        .editPostContainer .editPostId .editPostIdInp {
-            width: 50px;
-            display: block;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-    .editPostContainer .editPostTitle {
-        width: 100%;
-    }
-
-        .editPostContainer .editPostTitle .editPostTitleLbl {
-            text-align: center;
-            float: left;
-        }
-
-        .editPostContainer .editPostTitle .editPostTitleInp {
-            width: 100%;
-            display: block;
         }
         input[type=text] {
             width: 160px;
@@ -472,7 +289,7 @@ textarea {
         input[type=text]:focus {
             width: 100%;
         }
-            </style>    
+   </style>    
     </head>
         <body>
              <nav class="navbar navbar-inverse">
@@ -490,9 +307,9 @@ textarea {
                         <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>after_login_controller/admin">ADMIN</a></li>
-                             <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
-                            <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
+                            <li><a href="<?php echo base_url()?>front_controller/admin">ADMIN</a></li>
+                             <li><a href="<?php echo base_url()?>front_controller/get_profile">YOUR POSTS</a></li>
+                            <li><a href="<?php echo base_url()?>front_controller/logout">LOGOUT</a></li>                          
                           </ul>
                         </li>
                    <?php } ?>
@@ -501,8 +318,8 @@ textarea {
                         <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
-                            <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>                          
+                            <li><a href="<?php echo base_url()?>front_controller/get_profile">YOUR POSTS</a></li>
+                            <li><a href="<?php echo base_url()?>front_controller/logout">LOGOUT</a></li>                          
                           </ul>
                         </li>
                    <?php } ?>        
@@ -552,7 +369,7 @@ textarea {
                           <h2>Categories</h2></li>                          
                         <?php if(count($getCat)): ?>
                         <?php foreach($getCat as $categories): ?>                   
-                      <a href="<?php echo base_url();?>front_controller/fetch_by_id/<?php echo $categories->category_id?>"><li class="list-group-item"><?php echo $categories->category_name ?></li></a>
+                      <a href="<?php echo base_url();?>front_controller/fetch_cat/<?php echo $categories->category_id?>"><li class="list-group-item"><?php echo $categories->category_name ?></li></a>
                             <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>
@@ -562,7 +379,7 @@ textarea {
                          <h2>Tags</h2></li>
                    <?php if(count($getTag)): ?>
                         <?php foreach($getTag as $tags): ?>
-                     <a href="<?php echo base_url();?>front_controller/fetch_by_id/<?php echo $tags->tag_id?>"><li class="list-group-item"><?php echo $tags->tag_name ?></li></a>
+                     <a href="<?php echo base_url();?>front_controller/fetch_tag/<?php echo $tags->tag_id?>"><li class="list-group-item"><?php echo $tags->tag_name ?></li></a>
                         <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>

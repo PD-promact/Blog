@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     </head>
     <style>
+            .navbar {
+            border-radius: 0px;
+        }
         .glyphicon {
     font-size: 20px;
 }
@@ -21,19 +24,19 @@
           </div>
               <div class="nav navbar-nav pull-right">                        
                 <ul class="nav navbar-nav">
-                     <li><a href="<?php echo base_url()?>after_login_controller/index">HOME</a></li>
+                     <li><a href="<?php echo base_url()?>front_controller/index">HOME</a></li>
                      <a href="<?php echo base_url()?>post_controller/index"><input type="submit" name="insert" value="CREATE POST" class="btn btn-primary btn-sx"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                <li class="dropdown pull-right"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                    <span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-menu-down"></span></span>
                  <ul class="dropdown-menu">
                       <?php  if($this->session->userdata('role')=='admin'){ ?>
-                    <li><a href="<?php echo base_url()?>after_login_controller/admin">ADMIN</a></li>
-                    <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
-                   <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>
+                    <li><a href="<?php echo base_url()?>front_controller/admin">ADMIN</a></li>
+                    <li><a href="<?php echo base_url()?>front_controller/get_profile">YOUR POSTS</a></li>
+                   <li><a href="<?php echo base_url()?>front_controller/logout">LOGOUT</a></li>
                       <?php } ?>
                     <?php  if($this->session->userdata('role')=='user'){ ?>
-                    <li><a href="<?php echo base_url()?>after_login_controller/get_profile">YOUR POSTS</a></li>
-                   <li><a href="<?php echo base_url()?>after_login_controller/logout">LOGOUT</a></li>
+                    <li><a href="<?php echo base_url()?>front_controller/get_profile">YOUR POSTS</a></li>
+                   <li><a href="<?php echo base_url()?>front_controller/logout">LOGOUT</a></li>
                       <?php } ?>
                  </ul>
                </li>
