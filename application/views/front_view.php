@@ -328,7 +328,7 @@ textarea {
            </nav>          
             <form class="form-inline" role="form" method="post" action="<?php echo base_url()?>front_controller/search_post">
             <div class="form-group">
-                <input type="text" class="form-control" name="search" id="search" placeholder="Search Post">
+                <input type="text" class="form-control" name="search" id="search" value="<?php echo set_value('search');?>" placeholder="Search Post">
             </div>
                 <button type="submit" class="btn btn-info" name="submit">Search&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
             </form>

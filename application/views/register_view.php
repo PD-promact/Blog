@@ -36,21 +36,21 @@
                   <div class="form-group">
                  <div class="form-group">
                     <label>User Name</label>
-                    <input type="text" name="user_name" class="form-control"/>
+                    <input type="text" name="user_name" value="<?php echo set_value('user_name');?>" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("user_name"); ?></span>
                 </div>           
                     <label>Email ID</label>
-                    <input type="text" name="email" class="form-control"/>
+                    <input type="text" name="email" value="<?php echo set_value('email');?>" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("email"); ?></span>
                 </div>           
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control"/>
+                    <input type="password" name="password" value="<?php echo set_value('password');?>" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("password"); ?></span>
                 </div>   
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" name="passconf" class="form-control"/>
+                    <input type="password" name="passconf" value="<?php echo set_value('passconf');?>" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("passconf"); ?></span>
                 </div>     
                   <div class="form-group">

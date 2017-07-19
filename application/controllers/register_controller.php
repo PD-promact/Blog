@@ -96,8 +96,6 @@ Class Register_controller extends CI_Controller
                  'email' => $this->input->post('email',TRUE),
                  'password' => $this->input->post('password',TRUE)
             );     
-//                $username= $this->input->post("login_name");
-//                $password= $this->input->post("password");
                 
                 $this->load->model('register_model');
                 
