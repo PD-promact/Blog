@@ -112,9 +112,9 @@
             <br/><br/><br/>
             <form method="post" action="<?php echo base_url()?>cat_tag_controller/tag_validation">
                 <?php
-                if($this->uri->segment(2)=="inserted")
+                if($this->uri->segment(2)=="inserted_tag")
                 {
-                    echo '<p class="text-success">Category is inserted</p>';
+                    echo '<p class="text-success">Tag is inserted</p>';
                 }
                 ?>
                 <?php
@@ -142,7 +142,7 @@
                 <h1 align="center"><b>Add Tag</b></h1><br/>
                   <div class="form-group">
                     <label>Tag Name</label>
-                    <input type="text" name="tag" class="form-control"/>
+                    <input type="text" name="tag" value="<?php echo set_value("tag"); ?>" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("tag"); ?></span>
                 </div>           
                   <div class="form-group">

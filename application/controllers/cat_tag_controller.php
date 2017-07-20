@@ -29,7 +29,7 @@ Class Cat_tag_controller extends CI_Controller
        public function cat_validation()
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules("category","Category",'required');
+            $this->form_validation->set_rules("category","Category",'required|alpha|callback_category_name');
             
             if($this->form_validation->run())
             {
@@ -52,6 +52,22 @@ Class Cat_tag_controller extends CI_Controller
             else
             {
                 $this->index();
+            }
+        }
+        
+         public function category_name($category_name,$category_id)
+        {
+            $this->db->where('category_id',$category_id);
+            $this->db->where('category_name',$category_name);
+            $result=$this->db->get('categories');
+            
+            if($result->num_rows() > 0)
+            {
+                $this->form_validation->set_message('category_name', 'This Category already exits.');
+                return false;
+            }else
+            {
+                return true;
             }
         }
 
@@ -93,7 +109,7 @@ Class Cat_tag_controller extends CI_Controller
          public function tag_validation()
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules("tag","Tag",'required');
+            $this->form_validation->set_rules("tag","Tag",'required|alpha|callback_tag_name');
             
             if($this->form_validation->run())
             {
@@ -116,6 +132,22 @@ Class Cat_tag_controller extends CI_Controller
             else
             {
                 $this->index();
+            }
+        }
+        
+        public function tag_name($tag_name,$tag_id)
+        {
+            $this->db->where('tag_id',$tag_id);
+            $this->db->where('tag_name',$tag_name);
+            $result=$this->db->get('tags');
+            
+            if($result->num_rows() > 0)
+            {
+                $this->form_validation->set_message('tag_name', 'This Tag already exits.');
+                return false;
+            }else
+            {
+                return true;
             }
         }
         

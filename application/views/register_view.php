@@ -15,7 +15,7 @@
              <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">BLOGGING</a>
+                <a class="navbar-brand" href="<?php echo base_url()?>front_controller/index">BLOGGING</a>
               </div>
               <ul class="nav navbar-nav navbar-right">
                   <li><a href="<?php echo base_url()?>register_controller/login"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
@@ -45,12 +45,12 @@
                 </div>           
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" value="<?php echo set_value('password');?>" class="form-control"/>
+                    <input type="password" name="password" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("password"); ?></span>
                 </div>   
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" name="passconf" value="<?php echo set_value('passconf');?>" class="form-control"/>
+                    <input type="password" name="passconf" class="form-control"/>
                     <span class="text-danger"><?php echo form_error("passconf"); ?></span>
                 </div>     
                   <div class="form-group">

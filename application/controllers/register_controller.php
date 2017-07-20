@@ -12,8 +12,8 @@ Class Register_controller extends CI_Controller
         public function form_validation()
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('user_name',"User Name",'required|alpha');
-            $this->form_validation->set_rules("email","Email",'required|valid_email|is_unique[users.email]');
+            $this->form_validation->set_rules('user_name',"User Name",'required|alpha|callback_user_name');
+            $this->form_validation->set_rules("email","Email",'required|valid_email|callback_email');
             $this->form_validation->set_rules("password","Password",'required|min_length[8]');
             $this->form_validation->set_rules('passconf',"Password Confirmation",'required|matches[password]');
            
@@ -50,6 +50,36 @@ Class Register_controller extends CI_Controller
             else
             {
                 $this->index();
+            }
+        }
+        
+        public function user_name($user_name)
+        {
+            $this->db->where('user_name',$user_name);
+            $result=$this->db->get('users');
+            
+            if($result->num_rows() > 0)
+            {
+                $this->form_validation->set_message('user_name', 'This User Name is already taken.');
+                return false;
+            }else
+            {
+                return true;
+            }
+        }
+        
+         public function email($email)
+        {
+            $this->db->where('email',$email);
+            $result=$this->db->get('users');
+            
+            if($result->num_rows() > 0)
+            {
+                $this->form_validation->set_message('email', 'This Email Id is already registered.');
+                return false;
+            }else
+            {
+                return true;
             }
         }
 

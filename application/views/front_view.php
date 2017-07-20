@@ -295,7 +295,7 @@ textarea {
              <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">BLOGGING</a>
+                <a class="navbar-brand" href="<?php echo base_url()?>front_controller/index">BLOGGING</a>
               </div>
               <ul class="nav navbar-nav navbar-right">
                    <?php  if($this->session->userdata('role')==''){ ?>
@@ -364,26 +364,26 @@ textarea {
                   <?php echo $links ?>   
                     </div>
                   <div class="pull-right">
-                  <ul class="list-group">
-                      <li class="list-group-item">
-                          <h2>Categories</h2></li>                          
+                  <div class="list-group">
+                      <div class="list-group-item">
+                          <h2><b>Categories</b></h2></div>                          
                         <?php if(count($getCat)): ?>
                         <?php foreach($getCat as $categories): ?>                   
-                      <a href="<?php echo base_url();?>front_controller/fetch_cat/<?php echo $categories->category_id?>"><li class="list-group-item"><?php echo $categories->category_name ?></li></a>
+                      <a href="<?php echo base_url();?>front_controller/fetch_cat/<?php echo $categories->category_id?>" class="list-group-item"><?php echo $categories->category_name ?></a>
                             <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>
-                     </ul>
-                 <ul class="list-group">
-                     <li class="list-group-item">
-                         <h2>Tags</h2></li>
+                     </div>
+                 <div class="list-group">
+                     <div class="list-group-item">
+                         <h2><b>Tags</b></h2></div>
                    <?php if(count($getTag)): ?>
                         <?php foreach($getTag as $tags): ?>
-                     <a href="<?php echo base_url();?>front_controller/fetch_tag/<?php echo $tags->tag_id?>"><li class="list-group-item"><?php echo $tags->tag_name ?></li></a>
+                     <a href="<?php echo base_url();?>front_controller/fetch_tag/<?php echo $tags->tag_id?>" class="list-group-item"><?php echo $tags->tag_name ?></a>
                         <?php endforeach;?>
                     <?php else :?>
                         <?php endif; ?>
-                 </ul>
+                 </div>
                </div>
         </body>
 </html>

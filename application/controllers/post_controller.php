@@ -28,7 +28,7 @@ Class Post_controller extends CI_Controller
      public function post_form_validation()
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules("post_title","Post Title",'required');
+            $this->form_validation->set_rules("post_title","Post Title",'required|callback_post_title');
             $this->form_validation->set_rules("post_content","Post Content",'required');
             $this->form_validation->set_rules("category","Category",'required');
             $this->form_validation->set_rules("tag[]","Tag",'required');
@@ -65,6 +65,22 @@ Class Post_controller extends CI_Controller
             else
             {
                 $this->index();
+            }
+        }
+        
+        public function post_title($post_title,$post_id)
+        {
+            $this->db->where('post_id',$post_id);
+            $this->db->where('post_title',$post_title);
+            $result=$this->db->get('posts');
+            
+            if($result->num_rows() > 0)
+            {
+                $this->form_validation->set_message('post_title', 'This Post Title already exists.');
+                return false;
+            }else
+            {
+                return true;
             }
         }
 

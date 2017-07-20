@@ -57,17 +57,17 @@
                 <fieldset class="well the-fieldset">
                 <div class="form-group">
                     <label>Post Title</label>
-                    <input type="text" name="post_title" class="form-control">
+                    <input type="text" name="post_title" value="<?php echo set_value("post_title"); ?>" class="form-control">
                     <span class="text-danger"><?php echo form_error('post_title');?></span>
                 </div>
                 <div class="form-group">
                     <label>Post Content</label><br>
-                    <textarea rows="5" cols="154" name="post_content"></textarea>
+                    <textarea rows="5" cols="154" name="post_content"><?php echo set_value("post_content")?></textarea>
                     <span class="text-danger"><?php echo form_error('post_content');?></span>
                 </div>
                 <div>
                     <label>Category</label>
-                     <select name="category" class="form-control">
+                    <select name="category" class="form-control">
                          <option value="">Select Category</option>
                     <?php if(count($getCat)): ?>
                          <?php foreach($getCat as $categories): ?>
@@ -81,7 +81,7 @@
                     <br>
                 <div>
                     <label>Tags</label><br>
-                    <select class="form-control" id="tag" multiple class="form-control" name="tag[]">
+                    <select class="form-control" id="tag" multiple class="form-control" name="tag[]" value="<?php echo set_value("tag[]"); ?>">
                         <option value="">Select Tags</option>
                    <?php if(count($getTag)): ?>
                         <?php foreach($getTag as $tags): ?>

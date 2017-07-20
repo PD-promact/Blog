@@ -112,7 +112,7 @@
             <br/><br/><br/>
             <form method="post" action="<?php echo base_url()?>cat_tag_controller/cat_validation">
                 <?php
-                if($this->uri->segment(2)=="inserted")
+                if($this->uri->segment(2)=="inserted_cat")
                 {
                     echo '<p class="text-success">Category is inserted</p>';
                 }
@@ -142,7 +142,7 @@
                 <h1 align="center"><b>Add Category</b></h1><br/>
                   <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="category" class="form-control"/>
+                    <input type="text" name="category" value="<?php echo set_value("category") ?>"class="form-control"/>
                     <span class="text-danger"><?php echo form_error("category"); ?></span>
                 </div>    
                   <div class="form-group">
