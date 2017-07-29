@@ -49,6 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'front_controller';
+$route['default_controller'] = 'category';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = TRUE;
+$route['category']['get']='category/index';
+$route['category/(:num)']['get']='category/find/$1';
+$route['category']['post']='category/index';
+$route['category/(:num)']['put']='category/index/$1';
+$route['category/(:num)']['delete']='category/index/$1';
