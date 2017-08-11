@@ -1,71 +1,34 @@
 <?php
-defined('BASEPATH') OR exit('No  direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class category_model extends CI_Model
+Class Category_model extends CI_Model
 {
-    public function __construct()
+    public function all()
     {
-        parent::__construct();
+        return $this->db->get('categories')->result();
     }
-
-    public function get($category_id=null)
+    
+    public function delete($category_id)
     {
-       if(!is_null($category_id)){
-           $query = $this->db->query('select category_id,category_name from categories where category_id='.$category_id.'');
-
-           if($query->num_rows()===1){
-               return $query->row_array();
-           }
-
-           return false;
-      }
-
-      $query = $this->db->query('select category_id,category_name from categories');
-
-      if($query->num_rows()>0){
-          return $query->result_array();
+        $this->db->where('category_id',$category_id);
+        $this->db->delete('categories');
     }
-
-    return false;
-}
-
-public function save($category){
-    $this->db->set($this->_setCategory($category))->insert('categories');
-
-    if($this->db->affected_rows()===1){
-        return $this->db->insert_id();
+    
+     public function insert($data)
+    {
+        $this->db->insert('categories',$data);
     }
-
-    return false;
-}
-
-public function update($category_id,$category){
-    $this->db->set($this->_setCategory($category))->where('category_id',$category_id)->insert('categories');
-
-    if($this->db->affected_rows()===1){
-        return true;
+    
+      public function update($category_id,$data)
+    {
+        $this->db->where('category_id',$category_id);  
+        $this->db->update('categories',$data);
     }
-
-    return false;
-}
-
-public function delete($category_id){
-   $this->db->query('delete category_name from categories where category_id='.$category_id.'');
-
-   if($this->db->affected_rows()===1){
-        return true;
+    
+      public function find($category_id)
+    {
+        $this->db->where('category_id',$category_id);  
+       return $this->db->get('categories')->row();
     }
-
-    return false;
-}
-
-private function _setCategory($category)
-{
-    return array(
-        'category_id'=>$category['category_id'],
-        'category_name'=>$category['category_name']
-    );
-}
-
 }
 

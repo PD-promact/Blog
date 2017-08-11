@@ -1,63 +1,34 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 Class Post_model extends CI_Model
 {
-    public function getCat()
+    public function all()
     {
-        $query= $this->db->get('categories');
-        if($query->num_rows()>0){
-            return $query->result();
-        }
+        return $this->db->get('posts')->result();
     }
     
-    public function getTag()
+    public function delete($post_id)
     {
-        $query= $this->db->get('tags');
-        if($query->num_rows()>0){
-            return $query->result();
-        }
+        $this->db->where('post_id',$post_id);
+        $this->db->delete('posts');
     }
     
-    public function insert_post($data)
+     public function insert($data)
     {
-        $this->db->insert("posts",$data);
+        $this->db->insert('posts',$data);
     }
     
-     public function fetch_single_post($post_id)
+      public function update($post_id,$data)
     {
-        $this->db->where("post_id",$post_id);
-        $query = $this->db->get("posts");
-        return $query;
+        $this->db->where('post_id',$post_id);  
+        $this->db->update('posts',$data);
     }
     
-    public function update_post($data,$post_id)
+      public function find($post_id)
     {
-        $this->db->where("post_id",$post_id);
-        $this->db->update("posts",$data);
-    }
-    
-    public function fetch_post()
-    {
-        $query = $this->db->get("posts");
-        return $query;
-    }
-    
-    public function delete_post($post_id)
-    {
-        $this->db->where("post_id",$post_id);
-        $this->db->delete("posts");
-    }
-    
-    public function get_my_profile($user_id = NULL)
-    {
-        $user_id = $this->session->userdata('user_id');
-
-        $this->db->select('*');
-        $this->db->from('posts');
-        $this->db->join('users','users.user_id = posts.user_id');
-        $this->db->where('users.user_id',$user_id);
-        $query = $this->db->get();
-
-        return $query;
+        $this->db->where('post_id',$post_id);  
+       return $this->db->get('posts')->row();
     }
 }
+

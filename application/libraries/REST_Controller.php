@@ -422,15 +422,15 @@ abstract class REST_Controller extends CI_Controller {
         // Now update $this->_supported_formats
         $this->_supported_formats = array_intersect_key($this->_supported_formats, array_flip($supported_formats));
 
-        // //Get the language
-        // $language = $this->config->item('rest_language');
-        // if ($language === NULL)
-        // {
-        //     $language = 'english';
-        // }
+         //Get the language
+         $language = $this->config->item('rest_language');
+         if ($language === NULL)
+         {
+             $language = 'english';
+         }
 
-        // // Load the language file
-        // $this->lang->load('rest_controller', $language);
+        // Load the language file
+         $this->lang->load('rest_controller', $language);
 
         // Initialise the response, request and rest objects
         $this->request = new stdClass();
@@ -548,7 +548,7 @@ abstract class REST_Controller extends CI_Controller {
         }
 
         // When there is no specific override for the current class/method, use the default auth value set in the config
-        // // if ($this->auth_override === FALSE &&
+         // if ($this->auth_override === FALSE &&
         // //     (! ($this->config->item('rest_enable_keys') && $this->_allow === TRUE) ||
         // //     ($this->config->item('allow_auth_and_keys') === TRUE && $this->_allow === TRUE)))
         // // {
